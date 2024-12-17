@@ -1,11 +1,12 @@
 {
-  "tasks": {
-    "serve": "deno serve --watch --allow-net --port 5050 ./src/main.ts",
-    "dev": "deno run --watch --allow-net src/main.ts",
-    "inspect": "deno run --inspect-brk src/main.ts"
-  },
-  "imports": {
-    "@std/assert": "jsr:@std/assert@1",
-    "@/": "./src/"
-  }
+    "tasks": {
+        "serve": "deno serve --watch --allow-net --port 5050 ./src/main.ts",
+        "dev": "deno run --watch --allow-net src/main.ts",
+        "inspect": "deno run --inspect-brk src/main.ts"
+    },
+    "imports": {
+        "@std/assert": "jsr:@std/assert@1",
+        "@std/file-server": "jsr:@std/http/file-server",
+        "@/": "./src/"
+    }
 }
