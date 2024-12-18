@@ -1,18 +1,19 @@
 {
-  "tasks": {
-    "ssr:build": "deno --allow-read --allow-write ./src/lib/toSSR.ts",
-    "serve": "deno serve --watch --allow-net --allow-read --host 127.0.0.1 --port 5050 ./src/main.ts",
-    "inspect": "deno run --inspect-brk src/main.ts"
-  },
-  "imports": {
-    "@std/assert": "jsr:@std/assert@1",
-    "@std/file-server": "jsr:@std/http/file-server",
-    "@/": "./src/",
-    "react": "npm:react"
-  },
-  "compilerOptions": {
-    "jsx": "react",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment"
-  }
+    "tasks": {
+        "build": "deno --allow-read --allow-write --watch ./src/templates/build.ts",
+        "serve": "deno serve --watch --allow-net --allow-read --host 127.0.0.1 --port 5050 ./src/main.ts",
+        "dev": "deno run --watch --allow-read --allow-write src/templates/build.ts & deno serve --watch --allow-net --allow-read --host 127.0.0.1 --port 5050 ./src/main.ts",
+        "inspect": "deno run --inspect-brk src/main.ts"
+    },
+    "imports": {
+        "@std/assert": "jsr:@std/assert@1",
+        "@std/file-server": "jsr:@std/http/file-server",
+        "@/": "./src/",
+        "react": "npm:react"
+    },
+    "compilerOptions": {
+        "jsx": "react",
+        "jsxFactory": "h",
+        "jsxFragmentFactory": "Fragment"
+    }
 }

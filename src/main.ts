@@ -2,60 +2,56 @@ import { serveDir } from "@std/file-server";
 import App from "./App.ts";
 
 const json = (data: Record<string, string>): string => {
-    return JSON.stringify(data);
+  return JSON.stringify(data);
 };
 
-const html = `
-
-`;
-
 export default {
-    fetch(req: Request) {
-        // # --
-        // # --
-        // # --
-        // # --
-        if (req.url.match(/\.(html|css|js)$/)) {
-            return serveDir(req, {
-                fsRoot: "public",
-            });
-        }
+  fetch(req: Request) {
+    // # --
+    // # --
+    // # --
+    // # --
+    if (req.url.match(/\.(html|css|js|jpg|png|svg)$/)) {
+      return serveDir(req, {
+        fsRoot: "public",
+      });
+    }
 
-        // # --
+    // # --
 
-        const app = new App(req)
-            // # --
-            .setVerbose(true)
-            .htmlResponse()
-            // # --
-            .get("/", async ({ _user, _res }) => {
-                console.log(" --  Serving index.html");
-                return await serveDir(req, {
-                    fsRoot: "public",
-                });
-            })
-            .post("/books/:user", ({ user, _res }) => {
-                return new Response(json({ user }), {
-                    status: 200,
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-            })
-            .put("/books/:user", ({ user, _res }) => {
-                return new Response(json({ user }), {
-                    status: 200,
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-            });
-        // # --
-        // # --
-        // # --
-        // # --
-        return app.run();
-    },
+    const app = new App(req)
+      // # --
+      .setVerbose(true)
+      .htmlResponse()
+      // # --
+      .get("/", async ({ _user, _res }) => {
+        console.log(" --  Serving index.html");
+        return await serveDir(req, {
+          fsRoot: "public",
+        });
+      })
+      .post("/books/:user", ({ user, _res }) => {
+        return new Response(json({ user }), {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      })
+      .put("/books/:user", ({ user, _res }) => {
+        return new Response(json({ user }), {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      });
+    // # --
+    // # --
+    // # --
+    // # --
+    return app.run();
+  },
 };
 
 // // note :
