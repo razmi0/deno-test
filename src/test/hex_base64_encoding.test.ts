@@ -1,5 +1,8 @@
 import { assertEquals } from "@std/assert";
-import { type Transformation, transformData } from "../hex_base64_encoding.ts";
+import {
+  type Transformation,
+  transformData,
+} from "../lib/hex_base64_encoding.ts";
 
 Deno.test(function addTest() {
   const data = new Uint8Array([1, 32, 67, 120, 19]);
